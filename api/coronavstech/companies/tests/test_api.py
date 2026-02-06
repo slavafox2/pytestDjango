@@ -111,7 +111,24 @@ def function_that_logs_something() -> None:
         logger.warning(f"I am logging {str(e)}")
 
 
+## -> запуск тест коммандой pytest -v -s -k "logged"
+##
+# Куда “вставляется” logged в pytest -v -s -k "logged"
+# logged попадает в опцию -k и используется как строковый фильтр по именам.
+# Что фильтруется: имена тестов и “узлы” коллекции pytest (имя файла, имя класса, имя функции, иногда часть nodeid вроде test_api.py::Test...::test_logged...).
+# Как работает: pytest оставляет к запуску только те тесты, у которых где-то в имени встречается logged.
+# В вашем случае тест называется test_logged_warning_level, поэтому -k "logged" его выбирает.
+# Примеры:
+# pytest -k "logged" → запустит всё, где есть logged
+# pytest -k "logged and warning" → где есть и logged, и warning
+# pytest -k "logged and not error" → где есть logged, но нет error
 def test_logged_warning_level(caplog) -> None:
     caplog.set_level(logging.WARNING, logger="CORONA_LOGS")
     function_that_logs_something()
     assert "I am logging CoronaVirus Exception" in caplog.text
+
+
+def test_logged_info_level(caplog) -> None:
+    with caplog.at_level(logging.INFO):
+        logger.info("I am logging info level")
+        assert "I am logging info level" in caplog.text
