@@ -21,6 +21,17 @@ def amazon() -> Company:
 
 
 # --------------Test Get Companies--------------
+
+# client — это встроенная фикстура плагина pytest-django.
+# Плагин pytest-django подключён у вас через pytest.ini и строку plugins: django-4.11.1 в выводе pytest.
+# Этот плагин автоматически регистрирует несколько фикстур, в том числе:
+# client — обёртка над django.test.Client, даёт тестовый HTTP‑клиент.
+# db, django_db_* и др. — для работы с тестовой БД.
+# Поэтому в pytest-стиле достаточно просто написать:
+#   def test_something(client): 
+# и pytest сам подставит экземпляр Django-клиента, предварительно настроив Django‑окружение и
+# тестовую БД (если тест помечен @pytest.mark.django_db или использует фикстуру db).
+
 def test_zero_companies_should_return_empty_list(client) -> None:
     response = client.get(companies_url)
     assert response.status_code == 200
