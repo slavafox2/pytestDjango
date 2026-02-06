@@ -1,0 +1,24 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+
+*.7z
+.venv
+.idea
+__pycache__
+.sqlite3
+
+
+
+# /.phpunit.cache
+# /node_modules
+# /public/build
+# /public/hot
+# /public/storage
+# /storage/*.key
+# /vendor
+# .env
+# .env.backup
