@@ -30,7 +30,7 @@ jobs:
       - name: Run Tests
         env:
           # Убедись, что этот путь совпадает с твоим проектом!
-          DJANGO_SETTINGS_MODULE: api.coronavstech.coronavstech.settings
+          DJANGO_SETTINGS_MODULE: coronavstech.settings
           PYTHONPATH: api/coronavstech
         run: |
           pytest
