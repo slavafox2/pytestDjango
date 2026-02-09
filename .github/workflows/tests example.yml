@@ -24,7 +24,13 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Tests
+        # импорт coronavstech.settings будет находиться, потому что PYTHONPATH добавит папку api/coronavstech (в ней лежит пакет coronavstech/).
+        # Но это избыточно в вашем проекте  У вас это уже задано в pytest.ini:
+        # DJANGO_SETTINGS_MODULE = coronavstech.settings pythonpath = api/coronavstech
+        # Поэтому в GitHub Actions можно: либо оставить env (будет работать, но дублирует конфиг),
+        # либо не задавать env, и pytest-django сам возьмёт всё из pytest.ini (предпочтительнее).
         env:
-          DJANGO_SETTINGS_MODULE: api.coronavstech.coronavstech.settings # Путь к твоим настройкам
+          DJANGO_SETTINGS_MODULE: coronavstech.settings
+          PYTHONPATH: api/coronavstech
         run: |
           pytest

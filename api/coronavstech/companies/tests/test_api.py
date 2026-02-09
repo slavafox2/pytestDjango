@@ -10,7 +10,7 @@ from companies.models import Company
 companies_url = reverse("companies-list")
 
 # используете асинхронные тесты(например, с Playwright или асинхронным Django), вам может понадобиться расширенная версия:
-#pytestmark = pytest.mark.django_db(transaction=True). Это позволяет тестам видеть данные, созданные в других потоках или асинхронных задачах.
+# pytestmark = pytest.mark.django_db(transaction=True). Это позволяет тестам видеть данные, созданные в других потоках или асинхронных задачах.
 pytestmark = pytest.mark.django_db
 
 
@@ -28,9 +28,10 @@ def amazon() -> Company:
 # client — обёртка над django.test.Client, даёт тестовый HTTP‑клиент.
 # db, django_db_* и др. — для работы с тестовой БД.
 # Поэтому в pytest-стиле достаточно просто написать:
-#   def test_something(client): 
+#   def test_something(client):
 # и pytest сам подставит экземпляр Django-клиента, предварительно настроив Django‑окружение и
 # тестовую БД (если тест помечен @pytest.mark.django_db или использует фикстуру db).
+
 
 def test_zero_companies_should_return_empty_list(client) -> None:
     response = client.get(companies_url)
@@ -114,7 +115,6 @@ def test_raise_covid19_exception_should_pass() -> None:
     with pytest.raises(ValueError) as e:
         raise_covid19_exception()
     assert "CoronaVirus Exception" == str(e.value)
-
 
 
 logger = logging.getLogger("CORONA_LOGS")

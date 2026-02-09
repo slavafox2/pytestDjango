@@ -118,3 +118,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+# Email server configuration
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_SERVER = "smtp.yandex.ru"
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_HOST_USER = "rteyti334@yandex.by"
+EMAIL_HOST_PASSWORD = "oywiuxkauadwuztto"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
