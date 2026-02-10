@@ -34,13 +34,15 @@
 
 ```python
 import pytest
-from my_decorator import my_parametrized, get_list_of_kwargs_for_function
+from fibonacci.decorator.my_decorator import my_parametrized, get_list_of_kwargs_for_function
+
 
 def test_get_list_of_kwargs_for_function():
     identifiers = "a,b"
     values = [(1, 2), (3, 4)]
     result = get_list_of_kwargs_for_function(identifiers, values)
     assert result == [{"a": 1, "b": 2}, {"a": 3, "b": 4}]
+
 
 def test_my_parametrized_calls_function_twice(capsys):
     calls = []
@@ -81,7 +83,7 @@ pytest test_my_decorator.py
 
 ```python
 import pytest
-from my_decorator import my_parametrized, get_list_of_kwargs_for_function
+from fibonacci.decorator.my_decorator import my_parametrized, get_list_of_kwargs_for_function
 
 
 def test_get_list_of_kwargs_for_function_simple():

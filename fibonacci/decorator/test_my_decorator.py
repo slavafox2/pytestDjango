@@ -1,5 +1,8 @@
 import pytest
-from my_decorator import my_parametrized, get_list_of_kwargs_for_function
+from fibonacci.decorator.my_decorator import (
+    get_list_of_kwargs_for_function,
+    my_parametrized,
+)
 
 
 def test_get_list_of_kwargs_for_function_simple():
