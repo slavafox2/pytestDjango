@@ -2,6 +2,7 @@ name: Django CI
 
 on: 
   workflow_dispatch: # Позволяет запускать кнопкой manual
+# on:   # Позволяет запускать кнопкой auto
   # push:
   #   branches: [ main ]
   # pull_request:

@@ -22,7 +22,7 @@ def test_iterative_parametrize(n: int, expected: int)->None:
 
 from typing import Callable
 import pytest
-# from fibonacci.dynamic import fibonacci_dynamic, fibonacci_dynamic_v2
+from fibonacci.dynamic import fibonacci_dynamic, fibonacci_dynamic_v2
 from fibonacci.cached import fibonacci_cached, fibonacci_lru_cached
 from fibonacci.naive import fibonacci_naive
 
@@ -31,11 +31,11 @@ from fibonacci.naive import fibonacci_naive
 @pytest.mark.parametrize(
     "fib_func",
     [
-        fibonacci_naive,
-        fibonacci_cached,
-        fibonacci_lru_cached,
-        # fibonacci_dynamic,
-        # fibonacci_dynamic_v2,
+        # fibonacci_naive,
+        # fibonacci_cached,
+        # fibonacci_lru_cached,
+        fibonacci_dynamic,
+        fibonacci_dynamic_v2,
     ],
 )
 
