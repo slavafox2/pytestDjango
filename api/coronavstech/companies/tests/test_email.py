@@ -24,8 +24,8 @@ def test_send_email_without_arguments_should_send_empty_email(client, mocker) ->
     # with patch(
     #     "companies.views.send_mail"
     # ) as mocked_send_mail_function:
-    #     
-    #     
+    #
+    #
     mocked_send_mail_function = mocker.patch("companies.views.send_mail")
 
     response = client.post(path="/send-email")
