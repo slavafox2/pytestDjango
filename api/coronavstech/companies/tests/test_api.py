@@ -14,10 +14,10 @@ companies_url = reverse("companies-list")
 pytestmark = pytest.mark.django_db
 
 
-@pytest.fixture
-def amazon() -> Company:
-    """Компания Amazon, созданная в тестовой БД."""
-    return Company.objects.create(name="Amazone")
+# @pytest.fixture
+# def amazon() -> Company:
+#     """Компания Amazon, созданная в тестовой БД."""
+#     return Company.objects.create(name="Amazone")
 
 
 # --------------Test Get Companies--------------
@@ -150,6 +150,7 @@ def test_logged_info_level(caplog) -> None:
     with caplog.at_level(logging.INFO):
         logger.info("I am logging info level")
         assert "I am logging info level" in caplog.text
+
 
 
 # --------------Learn about fixtures tests--------------
