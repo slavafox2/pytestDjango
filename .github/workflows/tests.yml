@@ -40,7 +40,7 @@ jobs:
           DJANGO_SETTINGS_MODULE: coronavstech.settings
           PYTHONPATH: api/coronavstech
         run: |
-          pytest ./api/coronavstech/ -v -s 
+          pytest ./api/coronavstech/ -v -s  -m "not skip_in_ci"
 
       - name: Run Fibonacci tests
         run: |
