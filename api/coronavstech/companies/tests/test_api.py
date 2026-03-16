@@ -49,8 +49,8 @@ def test_one_company_exists_should_succeed(client, amazon) -> None:
     assert response_content.get("notes") == ""
 
 
-# --------------Test Post Companies--------------
 
+# --------------Test Post Companies--------------
 
 def test_create_company_without_arguments_should_fail(client) -> None:
     response = client.post(path=companies_url)
@@ -155,24 +155,6 @@ def test_logged_info_level(caplog) -> None:
 
 # --------------Learn about fixtures tests--------------
 
-# @pytest.fixture
-# def companies(request, company)-> List[Company]:
-#     companies = []
-#     names = request.param
-#     for name in names:
-#         companies.append(company(name=name))
-#     return companies
-        
-
-# @pytest.fixture()
-# def company(**kwargs):
-#     def _company_factory(**kwargs) -> Company:
-#         company_name = kwargs.pop("name", "Test Company INC")
-#         return Company.objects.create(name=company_name, **kwargs)
-
-#     return _company_factory
-
-
 # def test_multiple_companies_exists_should_succeed(client, company) -> None:
 #     tiktok: Company = company(name="Tiktok")
 #     twitch: Company = company(name="Twitch")
@@ -184,6 +166,7 @@ def test_logged_info_level(caplog) -> None:
 #         map(lambda company: company.get("name"), response_companies)
 #     )
 #     assert company_names == response_company_names
+
 
 # pytest style
 @pytest.mark.parametrize(

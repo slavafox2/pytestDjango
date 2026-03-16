@@ -1,17 +1,18 @@
 --------------------- commands history
 
+	# to start project
 	(.venv) PS C:\Users\user\Projects\pytestDjango> cd .\api\coronavstech\
 	(.venv) PS C:\Users\user\Projects\pytestDjango\api\coronavstech> python .\manage.py runserver
 
 
+	# to start autotests
 	pytest -v -s
 	
 	!! Ошибки в работе .venv
 	Вместо прямой команды pytest, используй запуск через интерпретатор. Это заставит систему использовать текущий python.exe из активного окружения:
 	powershell
 	python -m pytest -v
-	
-	
+		
 	---requirements.txt
 	
 	pip freeze > requirements.txt	
