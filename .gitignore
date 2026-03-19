@@ -9,8 +9,8 @@
 .venv
 .idea
 __pycache__
-.sqlite3
-
+*.sqlite3
+allure_reports
 
 
 # /.phpunit.cache
@@ -22,3 +22,4 @@ __pycache__
 # /vendor
 # .env
 # .env.backup
+api/coronavstech/db.sqlite3

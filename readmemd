@@ -1,0 +1,37 @@
+# commands history
+
+    # to start project
+    (.venv) PS C:\Users\user\Projects\pytestDjango> cd .\api\coronavstech\
+    (.venv) PS C:\Users\user\Projects\pytestDjango\api\coronavstech> python .\manage.py runserver
+
+
+    # to start autotests
+    pytest -v -s
+
+    !! Ошибки в работе .venv
+    Вместо прямой команды pytest, используй запуск через интерпретатор. Это заставит систему использовать текущий python.exe из активного окружения:
+    powershell
+    python -m pytest -v
+        
+    ---requirements.txt
+
+    pip freeze > requirements.txt	
+    pip install -r requirements.txt
+
+
+    pytest -v
+    pytest -v -s
+    pytest -v -s --durations=0 -vv
+    pytest -v -s -k   test_raise_covid19_exception_should_pass
+    #(.venv) PS C:\Users\user\Projects\pytestDjango> 
+    pytest api -vsk 'zero'
+    (запуск только одного метода)
+    pytest -k test_multiple_companies_exists_should_succeed
+
+    $env:PYTHONPATH="api/coronavstech"; pytest -k test_multiple_companies_exists_should_succeed
+
+
+    # to set up Allure
+    1. pip install allure-pytest
+    2. pytest . --alluredir=allure_reports
+    3. allure serve .\allure_reports\
