@@ -29,8 +29,9 @@
     pytest -k test_multiple_companies_exists_should_succeed
 
     $env:PYTHONPATH="api/coronavstech"; pytest -k test_multiple_companies_exists_should_succeed
+    python -m pytest -qv  api/coronavstech/companies/tests/test_mock_examples.py
 
-
+    
     # to set up Allure
     1. pip install allure-pytest
     2. pytest . --alluredir=allure_reports

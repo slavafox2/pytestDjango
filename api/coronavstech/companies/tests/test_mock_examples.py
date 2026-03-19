@@ -1,27 +1,20 @@
 import json
 import os
-import urllib.request
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 import pytest
+import requests
 
 
 def fetch_rate() -> int:
     """
     Example function that would normally hit a remote API.
-    We'll mock `urllib.request.urlopen` in the test so no network is used.
+    We'll mock `requests.get` in the test so no network is used.
     """
-    req = urllib.request.Request(
-        "https://example.com/rate",
-        headers={"User-Agent": "pytest"},
-        method="GET",
-    )
-    with urllib.request.urlopen(req, timeout=10) as resp:
-        body = resp.read()
-        status = getattr(resp, "status", None)
-        if status != 200:
-            raise ValueError("Bad response")
-        return json.loads(body)["rate"]
+    resp = requests.get("https://example.com/rate", headers={"User-Agent": "pytest"}, timeout=10)
+    if resp.status_code != 200:
+        raise ValueError("Bad response")
+    return json.loads(resp.content)["rate"]
 
 
 def get_user_from_db(user_id: int) -> dict:
@@ -40,21 +33,17 @@ def build_url() -> str:
     return f"{base}/ping"
 
 
-def test_mock_urlopen() -> None:
+def test_mock_requests_get() -> None:
     """
-    Mock example #1: patching a library call (urllib.request.urlopen).
+    Mock example #1: patching a library call (requests.get).
     """
     fake_resp = Mock()
-    fake_resp.status = 200
-    fake_resp.read.return_value = json.dumps({"rate": 42}).encode("utf-8")
+    fake_resp.status_code = 200
+    fake_resp.content = json.dumps({"rate": 42}).encode("utf-8")
 
-    fake_ctx = MagicMock()
-    fake_ctx.__enter__.return_value = fake_resp
-    fake_ctx.__exit__.return_value = False
-
-    with patch("urllib.request.urlopen", return_value=fake_ctx) as mock_urlopen:
+    with patch("requests.get", return_value=fake_resp) as mock_get:
         assert fetch_rate() == 42
-        mock_urlopen.assert_called_once()
+        mock_get.assert_called_once()
 
 
 def test_mock_internal_function() -> None:
